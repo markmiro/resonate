@@ -9,6 +9,15 @@ function getUserBio(userid, callback){
     .fail(function() { console.log("getUserBio Error"); })
 }
 
+function getCards(userid, callback){
+    $.get(ENDPOINT + "getCards.php", { "userid": userid })
+    .done(function(data) {
+        jsonData = JSON.parse(data);
+        callback(jsonData);
+    })
+    .fail(function() { console.log("getCards Error"); })
+}
+
 function postUserBio(biojson, callback){
     $.post(ENDPOINT + "postUserBio.php", { "biojson": biojson })
     .done(function(data) {
