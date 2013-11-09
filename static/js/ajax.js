@@ -18,8 +18,8 @@ function getCards(userid, callback){
     .fail(function() { console.log("getCards Error"); })
 }
 
-function postUserBio(biojson, callback){
-    $.post(ENDPOINT + "postUserBio.php", { "biojson": biojson })
+function postUserBio(userid, biojson, callback){
+    $.post(ENDPOINT + "postUserBio.php", { "userid": userid, "biojson": biojson })
     .done(function(data) {
         jsonData = JSON.parse(data);
         callback(jsonData);
