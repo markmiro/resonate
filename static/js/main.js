@@ -15,4 +15,6 @@ $(function() {
     $slides.bind("init.slides", function () {
         $slides.superslides('animate', 1);
     });
+
+    getUserBio(1);
 });
