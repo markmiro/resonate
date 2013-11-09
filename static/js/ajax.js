@@ -8,3 +8,12 @@ function getUserBio(userid, callback){
     })
     .fail(function() { console.log("getUserBio Error"); })
 }
+
+function postUserBio(biojson, callback){
+    $.post(ENDPOINT + "postUserBio.php", { "biojson": biojson })
+    .done(function(data) {
+        jsonData = JSON.parse(data);
+        callback(jsonData);
+    })
+    .fail(function() { console.log("postUserBio Error"); })
+}
