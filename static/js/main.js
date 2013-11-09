@@ -17,12 +17,18 @@ $(function() {
     //     $slides.superslides('animate', 1);
     // });
 
+    $("#contact-menu").toggleClass('open');
+    $("#contact-menu .contact-button").click(function () {
+        $("#contact-menu").toggleClass('open');
+    });
+
 
     getUserBio(1, function (data) {
         $(".intro .name").text(data.name);
         $(".intro .title").text(data.title);
         $(".intro .location").text(data.location);
         $(".intro .objective").text(data.objective);
-        $("#contact-link").attr("href", "mailto:" + data.email);
+        $("#email-link").attr("href", "mailto:" + data.email);
+        $("#email-link").text(data.email);
     });
 });
