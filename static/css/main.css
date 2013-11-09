@@ -32,13 +32,19 @@ body {
 }
 
 #contact-link {
-    color: #b24c08;
     position: absolute;
     top: 0;
     left: 0;
-    font-weight: 700;
     padding: 16px;
+    text-decoration: none;
 }
+    #contact-link div {
+        color: #b24c08;
+        font-weight: 700;
+        padding-bottom: 2px;
+        border-bottom: 2px solid #b24c08;
+        line-height: 14px;
+    }
 
 #menu-icon {
     top: 0;
