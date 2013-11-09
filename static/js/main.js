@@ -9,12 +9,20 @@ $(function() {
         $slides.data('superslides').animate('prev');
     });
 
-    $slides.superslides({
-        hashchange: true
-    });
-    $slides.bind("init.slides", function () {
-        $slides.superslides('animate', 1);
-    });
+    $slides.superslides();
+    // $slides.superslides({
+    //     hashchange: true
+    // });
+    // $slides.bind("init.slides", function () {
+    //     $slides.superslides('animate', 1);
+    // });
 
-    getUserBio(1);
+
+    getUserBio(1, function (data) {
+        $(".intro .name").text(data.name);
+        $(".intro .title").text(data.title);
+        $(".intro .location").text(data.location);
+        $(".intro .objective").text(data.objective);
+        $("#contact-link").attr("href", "mailto:" + data.email);
+    });
 });

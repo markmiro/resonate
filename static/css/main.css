@@ -37,6 +37,7 @@ body {
     left: 0;
     padding: 16px;
     text-decoration: none;
+    z-index: 1000;
 }
     #contact-link div {
         color: #b24c08;

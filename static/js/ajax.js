@@ -1,8 +1,10 @@
-function getUserBio(userid){
-    $.get("http://ec2-54-215-213-168.us-west-1.compute.amazonaws.com/Server/getUserBio.php", { "userid": userid })
+ENDPOINT = "http://ec2-54-215-213-168.us-west-1.compute.amazonaws.com/Server/";
+
+function getUserBio(userid, callback){
+    $.get(ENDPOINT + "getUserBio.php", { "userid": userid })
     .done(function(data) {
         jsonData = JSON.parse(data);
-        console.log(jsonData);
+        callback(jsonData);
     })
     .fail(function() { console.log("getUserBio Error"); })
 }
