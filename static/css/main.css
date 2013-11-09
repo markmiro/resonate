@@ -31,6 +31,12 @@ body {
     /*padding: 0 20px;*/
 }
 
+a {
+    color: #b24c08;
+    border-color: #b24c08;
+    text-decoration: none;
+}
+
 
 #contact-menu {
     position: absolute;
@@ -46,26 +52,25 @@ body {
     display: block;
 }
     .contact-button {
-        padding: 0;
-/*        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 16px;*/
         text-decoration: none;
-        /*z-index: 1000;*/
     }
-        .contact-button div {
-            color: #b24c08;
-            font-weight: 700;
-            padding-bottom: 2px;
-            border-bottom: 2px solid #b24c08;
-            line-height: 14px;
-        }
+    .contact-button {
+        color: #b24c08;
+        font-weight: 700;
+        padding-bottom: 1px;
+        border-bottom: 2px solid #b24c08;
+        line-height: 14px;
+    }
+    .contact-button.current {
+        color: #999;
+        border-color: #999;
+    }
     #contact-menu ul {
         display: none; /* hide by default */
         list-style: none;
         padding: 10px 0;
         margin: 0;
+        margin-top: 20px;
     }
     #contact-menu li {
         font-size: 30px;
@@ -73,8 +78,6 @@ body {
         margin-top: 10px;
     }
     #contact-menu li a {
-        color: #b24c08;
-        text-decoration: none;
         font-weight: 400;
     }
 
