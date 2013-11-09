@@ -107,7 +107,7 @@ a {
         margin: 120px 0 3px 0;
         font-size: 60px;
         line-height: 60px;
-        font-weight: lighter;
+        font-weight: 700;
     }
     .intro .title {
         margin-bottom: 6px;
@@ -123,8 +123,7 @@ a {
         margin-bottom: 40px;
     }
     .intro .objective {
-        opacity: 0.5;
-        font-size: 15px;
+        opacity: 0.75;
         font-weight: 400;
         text-align: right;
     }
@@ -136,6 +135,7 @@ a {
         padding: 72px 18px;
     }
     #slides .container.bulleted .title {
+        font-weight: 700;
         font-size: 36px;
     }
     #slides .container.bulleted li {
