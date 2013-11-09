@@ -19,9 +19,49 @@ textarea {
 }
 
 html {
+    font-weight: "Helvetica Neue";
     font-size: 1em;
     line-height: 1.4;
+    background: #ddd;
+    font-weight: lighter;
 }
+
+body {
+    padding: 0 20px;
+}
+
+.content {
+
+}
+
+    .content .detail {
+        font-size: 18px;
+    }
+
+    .name {
+        font-size: 72px;
+        line-height: 72px;
+        margin: 0;
+        margin-top: 100px;
+        font-weight: lighter;
+    }
+    .title {
+        margin-bottom: 5px;
+    }
+    .divider {
+        height: 1px;
+        width: 100%;
+        background: black;
+        margin-bottom: 5px;
+    }
+    .location {
+        margin-bottom: 40px;
+    }
+    .objective {
+        opacity: 0.5;
+        font-size: 15px;
+        text-align: right;
+    }
 
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
