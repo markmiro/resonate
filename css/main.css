@@ -27,7 +27,15 @@ html {
 }
 
 body {
-    padding: 0 20px;
+    /*padding: 0 20px;*/
+}
+
+#contact-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: 700;
+    padding: 16px;
 }
 
 #menu-icon {
@@ -44,38 +52,89 @@ body {
         margin-bottom: 4px;
     }
 
-.content {
-
+.intro {
+    padding: 0 36px;
 }
 
-    .content .detail {
+    .intro .detail {
         font-size: 18px;
     }
 
-    .name {
+    .intro .name {
+        margin: 80px 0 3px 0;
         font-size: 72px;
         line-height: 72px;
-        margin: 100px 0 3px 0;
         font-weight: lighter;
     }
-    .title {
+    .intro .title {
         margin-bottom: 6px;
     }
-    .divider {
+    .intro .divider {
         height: 1px;
         width: 100%;
         background: black;
         margin-bottom: 6px;
         opacity: 0.5;
     }
-    .location {
+    .intro .location {
         margin-bottom: 40px;
     }
-    .objective {
+    .intro .objective {
         opacity: 0.5;
         font-size: 15px;
         font-weight: 400;
         text-align: right;
+    }
+
+#slides {
+
+}
+    #slides .container.bulleted {
+        padding: 72px 18px;
+    }
+    #slides .container.bulleted .title {
+        font-size: 36px;
+    }
+    #slides .container.bulleted li {
+        position: relative;
+        margin-bottom: 10px;
+    }
+    #slides .container.bulleted .date {
+        font-size: 14px;
+        position: absolute;
+        top: -10px;
+        right: 0;
+    }
+    #slides .container.bulleted li {
+        font-size: 30px;
+    }
+
+
+.slides-navigation {
+    opacity: 0.5;
+}
+    .slides-navigation a {
+        /*line-height: 0;*/
+        color: black;
+        font-size: 36px;
+        text-decoration: none;
+        padding: 6px;
+        /*background: red;*/
+    }
+    .slides-navigation a:visited {
+        color: black;
+    }
+
+.slides-pagination {
+    margin-bottom: 12px;
+    opacity: 0.5;
+}
+    .slides-pagination > a {
+        width: 8px;
+        height: 8px;
+        border-width: 1px;
+    }
+    .slides-pagination > a.current {
     }
 
 /*
