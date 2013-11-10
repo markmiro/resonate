@@ -60,15 +60,11 @@ $(function() {
     function inited() {
         var $slides = $('#slides');
 
-        // Hammer($slides[0], {
-        //     css_hacks:false,
-        //     prevent_default: true,
-        //     scale_treshold: 0,
-        //     drag_min_distance: 0,
-        //     stop_browser_behavior: {
-        //         userselect: false
-        //     }
-        // });
+        $slides.superslides({
+            animation: 'slide2',
+            animation_speed: "faster"
+        });
+
 
         Hammer($slides[0], {
             css_hacks:false,
@@ -89,17 +85,12 @@ $(function() {
         });
 
 
-        var contactSlideIndex;
-        $slides.superslides({
-            animation: 'slide2',
-            animation_speed: "faster"
-        });
-        $slides.bind("init.slides", function () {
-            contactSlideIndex = $slides.superslides('size') - 1;
-        });
+        function contactSlideIndex() {
+            return $slides.superslides('size') - 1;
+        }
 
         function getCurrentSlide() {
-            $slidesContainer = $('.slides-container').first();
+            var $slidesContainer = $('.slides-container').first();
             var currentIndex = $slides.superslides('current');
             var domElement = $slidesContainer.find('li').get(currentIndex);
             return $(domElement);
@@ -114,19 +105,19 @@ $(function() {
         //     $("#contact-menu").toggleClass('open');
         // });
 
+        $("#contact-menu .contact-button").text("Request Meeting");
         $("#contact-menu .contact-button").click(function () {
-            if ($slides.superslides('current') != contactSlideIndex)
-                $slides.superslides('animate', contactSlideIndex);
-            else
+            var label;
+            if ($slides.superslides('current') == contactSlideIndex()) {
                 $slides.superslides('animate', 0);
+                label = "Request Meeting";
+            } else {
+                $slides.superslides('animate', contactSlideIndex());
+                label = "Home";
+            }
+            $("#contact-menu .contact-button").text(label);
         });
-
-        $slides.bind("animated.slides", function () {
-             // $("#contact-menu .contact-button").toggleClass('current', $slides.superslides('current') == contactSlideIndex);
-             var content = ($slides.superslides('current') == contactSlideIndex) ? "Home" : "Request Meeting";
-             $("#contact-menu .contact-button").text(content);
-        });
-
+        
 
         // ----------------------------------------------
         // EDIT CODE
@@ -192,10 +183,12 @@ $(function() {
             $slide.insertAfter($current);
             $slides.superslides('update');
             // TODO: make fade in animation for creating new slide
+            var currentIndex = $slides.superslides('current');
+            var $slidesContainer = $('.slides-container').first();
             var $next = $($slidesContainer.find('li').get(currentIndex + 1));
-            // $next.css('opacity', 0);
+            $next.css('opacity', 0);
             setTimeout(function () {
-                // $next.fadeIn();
+                $next.fadeIn();
             }, 600);
             $next.find('li.editable').first().click();
             $('#slides').superslides('animate', 'next');
