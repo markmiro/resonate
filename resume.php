@@ -143,7 +143,7 @@
             <!-- <a href="#" class="save-slide">Save Slide</a> -->
         </div>
         <a href="#" class="bubble-button edit-slide">Edit</a>
-        <!-- <a href="#" class="bubble-button login hide-when-editing">Login</a> -->
+        <a href="#" class="bubble-button login hide-when-editing">Login</a>
 
         <script src="static/js/jquery.min.js"></script>
         <script src="static/js/underscore.min.js"></script>

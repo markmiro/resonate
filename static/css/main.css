@@ -229,6 +229,15 @@ a {
     bottom: 0;
     background-image: url(../../img/pencil.png);
 }
+:not(.loggedIn) a.login {
+    bottom: 0;
+    background-color: #b24c08;
+    position: absolute;
+    z-index: 3000;
+    bottom: 0;
+    right: 0;
+}
+
 .editing a.edit-slide {
     background-color: #1cb208;
 }
