@@ -212,12 +212,12 @@ a {
 .bubble-button {
     min-width: 100px;
     height: 40px;
-    background: #086cb2;
+    background: #3a618c;
     text-align: right;
     padding: 0 20px;
     margin: 12px;
     color: #eee;
-    border-radius: 999px;
+    border-radius: 6px;
     line-height: 38px;
     font-weight: 700;
     background-size: 20px;

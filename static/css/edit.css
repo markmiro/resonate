@@ -68,11 +68,10 @@
         }
 
 .add-bullet-button {
-    margin-top: 12px;
-    background: #086cb2;
+    background: #3a618c;
     color: #eee;
     padding: 6px 12px;
-    border-radius: 999px;
+    border-radius: 6px;
     font-weight: 700;
 }
 
