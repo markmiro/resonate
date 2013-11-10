@@ -1,3 +1,9 @@
+<?php
+ if(isset($_GET["userid"])) 
+     $userid=$_GET["userid"];
+ else $userid=2;
+?>
+
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -26,7 +32,7 @@
         <script src="static/js/vendor/modernizr-2.6.2.min.js"></script>
 
         <script>
-            currentUserId = 2;
+            currentUserId=<?php echo $userid;?>;
         </script>
         <div id="templates">
             <script id='intro-slide-template' type='text/template'>
