@@ -48,6 +48,17 @@ a {
     text-decoration: none;
 }
 
+#small-logo {
+    position: absolute;
+    z-index: 1000;
+    top: 16px;
+    right: 36px;
+}
+    #logo img {
+        /*opacity: 0.5;*/
+        width: 60px;
+    }
+
 #contact-menu {
     /*right: 0;*/
     position: absolute;

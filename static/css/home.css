@@ -7,6 +7,10 @@
     font-size: 36px;
     font-weight: 700;
 }
+    #logo img {
+        width: 120px;
+        margin-bottom: 6px;
+    }
 
 #tagline {
     margin-top: -6px;
@@ -20,12 +24,17 @@
 #login, #signup {
     font-weight: 400;
     text-align: center;
-    color: #b24c08;
     border: 1px solid #b24c08;
-    /*color: #eee;*/
-    /*background: #b24c08;*/
     padding: 12px;
     margin: 6px 36px 0;
+}
+#login {
+    color: #b24c08;
+
+}
+#signup {
+    color: #eee;
+    background: #b24c08;
 }
 
 #login-buttons {
