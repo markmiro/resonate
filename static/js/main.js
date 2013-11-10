@@ -1,6 +1,7 @@
 $(function() {
 
     DEFAULT_TEXT = "Type something!";
+    DEFAULT_SLIDE_HEADERS = ['Skills', 'Experience', 'Education'];
     MAX_SLIDES = 8;
     currentUserId = 1;
     allData = null;
@@ -221,8 +222,12 @@ $(function() {
             //         }
             //     ]
             // });
+
+            // get headers that haven't been used yet
+            var potentialHeaders = _.difference(DEFAULT_SLIDE_HEADERS, _.pluck(allData.cards, 'header'));
+            var newHeader = potentialHeaders[0];
             var slideHTML = createStandardCard({
-                header: "Something",
+                header: newHeader,
                 bullets: [
                     {
                         bullet: ""
