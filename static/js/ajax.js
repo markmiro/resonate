@@ -59,6 +59,15 @@ function addUser(user, pass, name, callback){
     .fail(function() { console.log("addUser Error"); })
 }
 
+function validateUser(user, pass, callback){
+    $.post(ENDPOINT + "validateUser.php", { "user": user, "pass": pass })
+    .done(function(data) {
+        jsonData = JSON.parse(data);
+        callback(jsonData);
+    })
+    .fail(function() { console.log("validateUser Error"); })
+}
+
 function getVCF(biojson, callback){
     $.post(ENDPOINT + "postVCF.php", { "biojson": biojson })
     .done(function(data) {
