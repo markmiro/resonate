@@ -6,9 +6,10 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>preamble.me</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="format-detection" content="telephone=no" />
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
@@ -19,6 +20,48 @@
         <script src="static/js/vendor/modernizr-2.6.2.min.js"></script>
 
         <div id="templates">
+            <script id='intro-slide-template' type='text/template'>
+                <li>
+                  <!-- <img src="img/map.png" alt=""> -->
+                  <div id="intro-slide" class="container">
+                    <div class="intro">
+                        <h1 class="name">
+                            <%= name %>
+                        </h1>
+                        <div class="detail title">
+                            <%= title %>
+                        </div>
+                        <div class="detail divider"></div>
+                        <div class="detail location">
+                            <%= location %>
+                        </div>
+                        <div class="objective">
+                            <%= objective %>
+                        </div>
+                    </div>
+                  </div>
+                </li>
+            </script>
+
+            <script id='contact-slide-template' type='text/template'>
+                <li>
+                    <div id="contact-slide" class="container bulleted">
+                        <div class="title">Contact</div>
+                        <ul>
+                            <li>
+                                <a href="mailto:"><%= email %></a>
+                            </li>
+                            <li>
+                                <a href="tel:1-<%= phone %>"><%= phone %></a>
+                            </li>
+                            <li>
+                                <a href="<%= linkedin %>">Linked In</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </script>
+
             <script id='slide-template' type='text/template'>
                 <li>
                     <div class="container bulleted">
@@ -58,70 +101,27 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <!--
+        <div id="logo">
+            preamble.me
+        </div>
+        -->
         <div id="contact-menu">
             <a href="#" class="contact-button">
                 Contact
             </a>
-            <div class="links">
-                <ul>
-                    <li>
-                        <a id="email-link" href="mailto:">Email</a>
-                    </li>
-                    <li>
-                        <a id="phone-link" href="#">(916) 555-5555</a>
-                    </li>
-                    <li>
-                        <a id="linkedIn-link" href="#">Linked In</a>
-                    </li>
-                </ul>
-            </div>
         </div>
-
-<!--         <div id="menu-icon">
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-            <div class="menu-line"></div>
-        </div> -->
 
         <div id="slides">
           <ul class="slides-container">
-            <li>
-              <!-- <img src="img/map.png" alt=""> -->
-              <div class="container">
-                <div class="intro">
-                    <h1 class="name">Will John</h1>
-                    <div class="detail title">Web Developer / Designer</div>
-                    <div class="detail divider"></div>
-                    <div class="detail location">San Francisco, CA</div>
-                    <div class="objective">
-                        I’m looking for a side-job that will help me do what I want to do and where I don’t have to be told what I have to do.
-                    </div>
-                </div>
-              </div>
-            </li>
-            <li>
-                <div class="container bulleted">
-                    <div class="title">Contact</div>
-                    <ul>
-                        <li>
-                            <a href="mailto:">Email</a>
-                        </li>
-                        <li>
-                            <a ref="#">(916) 555-5555</a>
-                        </li>
-                        <li>
-                            <a href="#">Linked In</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
           </ul>
           <nav class="slides-navigation">
-<!--             <a href="#" class="next">›</a>
-            <a href="#" class="prev">‹</a> -->
+            <!--             
+            <a href="#" class="next">›</a>
+            <a href="#" class="prev">‹</a>
+            -->
           </nav>
         </div>
-
 
         <script src="static/js/jquery.min.js"></script>
         <script src="static/js/underscore.min.js"></script>

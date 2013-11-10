@@ -42,10 +42,20 @@ a {
 }
 
 
+#logo {
+    position: absolute;
+    right: 0;
+    padding: 16px;
+    z-index: 1000;
+
+    font-weight: 400;
+    opacity: 0.25;
+}
+
 #contact-menu {
     /*right: 0;*/
     position: absolute;
-    padding: 16px;
+    padding: 16px 36px;
     z-index: 1000;
 }
 #contact-menu.open {
@@ -138,7 +148,7 @@ a {
 
 }
     #slides .container.bulleted {
-        padding: 72px 18px;
+        padding: 72px 36px;
     }
     #slides .container.bulleted .title {
         font-weight: 700;
@@ -156,6 +166,12 @@ a {
     }
     #slides .container.bulleted li {
         font-size: 30px;
+    }
+
+#contact-slide {}
+    #contact-slide ul {
+        padding-left: 0;
+        list-style: none;
     }
 
 

@@ -93,18 +93,17 @@ $(function() {
         });
     }
 
-    
-    getUserBio(1, function (data) {
-        $(".intro .name").text(data.name);
-        $(".intro .title").text(data.title);
-        $(".intro .location").text(data.location);
-        $(".intro .objective").text(data.objective);
-        $("#email-link").attr("href", "mailto:" + data.email);
-        $("#email-link").text(data.email);
-        inited();
-    });
-    getCardsStatic(1, function (cards) {
-        console.log(cards);
+    function addIntroCard(userbio) {
+        var cardHTML = tmp('intro-slide', userbio);
+        $('.slides-container').append(cardHTML);
+    }
+
+    function addContactCard(userbio) {
+        var cardHTML = tmp('contact-slide', userbio);
+        $('.slides-container').append(cardHTML);
+    }
+
+    function addStandardCards(cards) {
         for (var i = 0; i < cards.length; i++) {
             var card = cards[i];
             // var bullets = "<% _.each(bullets, function(content) { %> <li><%= content %></li> <% }); %>";
@@ -119,7 +118,44 @@ $(function() {
             };
             // var $bullets = _.template(bullets, {bullets: card.bullets});
             var cardHTML = tmp('slide', {header: card.header, bullets: bulletsHTML});
-            $('.slides-container').append(cardHTML)
+            $('.slides-container').append(cardHTML);
         };
+    }
+    
+    getUserData(1, function (data) {
+        console.log(data);
+        addIntroCard(data.userbio);
+        addStandardCards(data.cards);
+        addContactCard(data.userbio);
+        inited();
     });
+
+    // getUserBio(1, function (data) {
+    //     $(".intro .name").text(data.name);
+    //     $(".intro .title").text(data.title);
+    //     $(".intro .location").text(data.location);
+    //     $(".intro .objective").text(data.objective);
+    //     $("#email-link").attr("href", "mailto:" + data.email);
+    //     $("#email-link").text(data.email);
+    //     inited();
+    // });
+    // getCardsStatic(1, function (cards) {
+    //     console.log(cards);
+    //     for (var i = 0; i < cards.length; i++) {
+    //         var card = cards[i];
+    //         // var bullets = "<% _.each(bullets, function(content) { %> <li><%= content %></li> <% }); %>";
+    //         var bulletsHTML = "";
+    //         for (var j = 0; j < card.bullets.length; j++) {
+    //             var bullet = card.bullets[j];
+    //             var bulletHTML;
+    //             if (bullet.date != null)
+    //                 bulletHTML = tmp('date-bullet', bullet);
+    //             bulletHTML = tmp('bullet', bullet);
+    //             bulletsHTML += bulletHTML;
+    //         };
+    //         // var $bullets = _.template(bullets, {bullets: card.bullets});
+    //         var cardHTML = tmp('slide', {header: card.header, bullets: bulletsHTML});
+    //         $('.slides-container').append(cardHTML)
+    //     };
+    // });
 });
