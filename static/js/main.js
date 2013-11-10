@@ -144,7 +144,7 @@ window.addEventListener("load",function() {
         // ----------------------------------------------
 
         var $editButton = $(".edit-slide");
-        $('body').addClass('editing');
+        // $('body').addClass('editing');
         $editButton.click(function () {
             $('body').toggleClass('editing');
             if (isEditing()) {
