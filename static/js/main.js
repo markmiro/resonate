@@ -3,7 +3,6 @@ $(function() {
     DEFAULT_TEXT = "Type something!";
     DEFAULT_SLIDE_HEADERS = ['Skills', 'Experience', 'Education'];
     MAX_SLIDES = 5;
-    currentUserId = 2;
     allData = null;
 
 
