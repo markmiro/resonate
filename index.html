@@ -64,9 +64,10 @@
             $(function() {
                 $('#login .submit').click(function () {
                     if ($('#login .form').is(":visible")) {
-                        // validateUser($('#username').val(), $('#password').val(), function (data) {
-                        //     console.log(data);
-                        // });
+                        validateUser($('#username').val(), $('#password').val(), function (data) {
+                            console.log(data[0]);
+                            window.location.assign('http://preamble.homelinux.net/resume.php?userid=' + data[0]);
+                        });
                     } else {
                         $('#logo').fadeOut(time);
                         $('#tagline').fadeOut(time);
@@ -76,7 +77,7 @@
                         $('#username').focus();
                         $('#username').select();
                         setTimeout(function () {
-                            $('#login .submit').attr('href', "resume.html");
+                            // $('#login .submit').attr('href', "resume.html");
                             var $target = $('html,body'); 
                             $target.animate({scrollTop: 200}, 300);
                         }, 300);
