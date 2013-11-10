@@ -33,9 +33,15 @@
     #controls .insert {
         top: 0;
     }
-    #controls .insert.disabled, .delete-slide.disabled {
+
+    #controls .save-slide.disabled,
+    #controls .preview-slide.disabled,
+    #controls .delete-slide.disabled,
+    #controls .insert.disabled
+    {
         /*color: #999;*/
         opacity: 0.5;
+        display: none;
     }
 
     #controls .insert.before, {
