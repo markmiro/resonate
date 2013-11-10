@@ -1,6 +1,12 @@
 $(function() {
 
     DEFAULT_TEXT = "Type something!";
+    function isEditing() {
+        return $('body').hasClass('editing');
+    }
+    function setEditing(isEditing) {
+
+    }
 
     var tmp = function (templateName, vars) {
         if (vars == undefined) vars = {};
@@ -120,16 +126,23 @@ $(function() {
         // EDIT CODE
         // ----------------------------------------------
 
-        var $previewButton = $("#controls .preview-slide");
+        var $previewButton = $(".preview-slide");
         $('body').addClass('editing');
         $previewButton.click(function () {
             $('body').toggleClass('editing');
+            $('#controls').toggle(isEditing());
             if ($('body').hasClass('editing')) {
                 $('head').append('<link rel="stylesheet" href="static/css/edit.css">')
                 $previewButton.text('Done');
             } else {
                 $("link[href='static/css/edit.css']").remove();
                 $previewButton.text('Edit');
+            }
+        });
+
+        $('.save-slide').click(function () {
+            if ($slides.superslides('current') == 0) {
+                alert('saving bio page');
             }
         });
 
@@ -185,7 +198,7 @@ $(function() {
         });
 
         $('body').on("click", ".editable", function (e) {
-            if (!$('body').hasClass('editing')) return;
+            if (!isEditing()) return;
             var item = $(e.target);
             item.attr('contenteditable', 'true');
             item.removeClass('empty');
@@ -196,8 +209,6 @@ $(function() {
                 item.removeAttr('contenteditable');
                 if ($.trim(item.text()) == "" && item.prop("tagName") == "LI") {
                     item.remove();
-                } else {
-                    // item.text("Type!");
                 }
             })
         });
@@ -214,6 +225,11 @@ $(function() {
         $('body').on("focusout", ".editable", function (e) {
             var item = $(e.target);
             placeholderFor(item);
+        });
+
+        $('body').on("blur", ".editable", function (e) {
+
+            console.log('blurred');
         });
     }
 
