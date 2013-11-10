@@ -18,6 +18,11 @@ function getCards(userid, callback){
     .fail(function() { console.log("getCards Error"); })
 }
 
+function getCardsStatic(userid, callback){
+    jsonData = JSON.parse('[{"userid":"1","header":"Experiences","bullets":[{"bullet":"CEO of Apples","date":null,"image":null,"link":null},{"bullet":"Leader of a pack","date":null,"image":null,"link":null},{"bullet":"Stud","date":null,"image":null,"link":null}]},{"userid":"1","header":"Power","bullets":[{"bullet":"Boss","date":null,"image":null,"link":null},{"bullet":"Damn Son..","date":null,"image":null,"link":null}]}]');
+    callback(jsonData);
+}
+
 function postUserBio(userid, biojson, callback){
     $.post(ENDPOINT + "postUserBio.php", { "userid": userid, "biojson": biojson })
     .done(function(data) {

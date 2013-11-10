@@ -1,5 +1,10 @@
 $(function() {
 
+    var tmp = function (templateName, vars) {
+        if (vars == undefined) vars = {};
+        return _.template($('#' + templateName + '-template').html(), vars);
+    };
+
     function inited() {
         var $slides = $('#slides');
 
@@ -41,7 +46,7 @@ $(function() {
         });
     }
 
-
+    
     getUserBio(1, function (data) {
         $(".intro .name").text(data.name);
         $(".intro .title").text(data.title);
@@ -50,5 +55,24 @@ $(function() {
         $("#email-link").attr("href", "mailto:" + data.email);
         $("#email-link").text(data.email);
         inited();
+    });
+    getCardsStatic(1, function (cards) {
+        console.log(cards);
+        for (var i = 0; i < cards.length; i++) {
+            var card = cards[i];
+            // var bullets = "<% _.each(bullets, function(content) { %> <li><%= content %></li> <% }); %>";
+            var bulletsHTML = "";
+            for (var j = 0; j < card.bullets.length; j++) {
+                var bullet = card.bullets[j];
+                var bulletHTML;
+                if (bullet.date != null)
+                    bulletHTML = tmp('date-bullet', bullet);
+                bulletHTML = tmp('bullet', bullet);
+                bulletsHTML += bulletHTML;
+            };
+            // var $bullets = _.template(bullets, {bullets: card.bullets});
+            var cardHTML = tmp('slide', {header: card.header, bullets: bulletsHTML});
+            $('.slides-container').append(cardHTML)
+        };
     });
 });

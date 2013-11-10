@@ -27,6 +27,10 @@ html {
     color: #444;
 }
 
+#templates {
+    display: none;
+}
+
 body {
     /*padding: 0 20px;*/
 }
