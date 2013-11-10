@@ -41,7 +41,7 @@ $(function() {
 
         $slides.bind("animated.slides", function () {
              // $("#contact-menu .contact-button").toggleClass('current', $slides.superslides('current') == contactSlideIndex);
-             var content = ($slides.superslides('current') == contactSlideIndex) ? "Home" : "Contact";
+             var content = ($slides.superslides('current') == contactSlideIndex) ? "Home" : "Request Meeting";
              $("#contact-menu .contact-button").text(content);
         });
     }

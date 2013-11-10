@@ -43,6 +43,7 @@ a {
 
 
 #contact-menu {
+    /*right: 0;*/
     position: absolute;
     padding: 16px;
     z-index: 1000;
@@ -85,12 +86,11 @@ a {
         font-weight: 400;
     }
 
+/*
 #menu-icon {
     top: 0;
-    right: 0;
     position: absolute;
     padding: 16px;
-    /*background: red;*/
     width: 20px;
 }
     #menu-icon .menu-line {
@@ -98,12 +98,14 @@ a {
         height: 3px;
         margin-bottom: 4px;
     }
+*/
 
 .intro {
     padding: 0 36px;
 }
 
     .intro .detail {
+        font-weight: 700;
         font-size: 18px;
     }
 
