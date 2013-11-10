@@ -33,7 +33,7 @@
     #controls .insert {
         top: 0;
     }
-    #controls .insert.disabled {
+    #controls .insert.disabled, .delete-slide.disabled {
         /*color: #999;*/
         opacity: 0.5;
     }

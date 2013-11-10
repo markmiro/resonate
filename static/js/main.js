@@ -60,6 +60,7 @@ $(function() {
 
     function inited() {
         var $slides = $('#slides');
+        var $slidesContainer = $('.slides-container').first();
 
         $slides.superslides({
             animation: 'slide2',
@@ -85,13 +86,21 @@ $(function() {
             $slides.data('superslides').animate('prev');
         });
 
+        $slides.bind("animated.slides", function (data) {
+            var currentIndex = $slides.superslides('current');
+            var label = (currentIndex == contactSlideIndex()) ? "Home" : "Request Meeting";
+            $("#contact-menu .contact-button").text(label);
+            $('#controls .delete-slide').toggleClass('disabled', currentIndex == 0 || currentIndex == contactSlideIndex());
+            $('#controls .insert.before').toggleClass('disabled', currentIndex == 0);
+            $('#controls .insert.after').toggleClass('disabled', currentIndex == contactSlideIndex());
+        });
+
 
         function contactSlideIndex() {
             return $slides.superslides('size') - 1;
         }
 
         function getCurrentSlide() {
-            var $slidesContainer = $('.slides-container').first();
             var currentIndex = $slides.superslides('current');
             var domElement = $slidesContainer.find('> li').get(currentIndex);
             return $(domElement);
@@ -106,7 +115,7 @@ $(function() {
         //     $("#contact-menu").toggleClass('open');
         // });
 
-        $("#contact-menu .contact-button").text("Request Meeting");
+        // $("#contact-menu .contact-button").text("Request Meeting");
         $("#contact-menu .contact-button").click(function () {
             var label;
             if ($slides.superslides('current') == contactSlideIndex()) {
@@ -161,7 +170,6 @@ $(function() {
             if ($slides.superslides('size') >= MAX_SLIDES)
                 return;
             var currentIndex = $slides.superslides('current');
-            var $slidesContainer = $('.slides-container').first();
             var $current = getCurrentSlide();
             // var slideHTML = createStandardCard({
             //     header: "New Slide!",
@@ -181,7 +189,7 @@ $(function() {
                         bullet: ""
                     }
                 ]
-            });;
+            });
             $slide = $(slideHTML);
             $slide.insertAfter($current);
             $slides.superslides('update');
@@ -196,10 +204,14 @@ $(function() {
         });
 
         $('#controls .delete-slide').click(function () {
-            // var currentIndex = $slides.superslides('current');
-            // var $current = $($slidesContainer.find('li').get(currentIndex));
-            // $current.remove();
-            // $slides.superslides('update');
+            if ($('#controls .delete-slide').hasClass('disabled')) return;
+            var currentIndex = $slides.superslides('current');
+            var $current = $($slidesContainer.find('li').get(currentIndex));
+            $current.remove();
+            $slides.superslides('update');
+            $('.slides-pagination').find('a').last().remove();
+            $('.slides-pagination').find('a').get(currentIndex).remove();
+            $('#slides').superslides('animate', 'prev');
         });
 
         $('body').on("click", ".editable", function (e) {
