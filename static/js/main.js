@@ -207,6 +207,11 @@ $(function() {
             if ($('#controls .delete-slide').hasClass('disabled')) return;
             var currentIndex = $slides.superslides('current');
             var $current = $($slidesContainer.find('li').get(currentIndex));
+            var header = $current.find('.title').text();
+            removeCard(currentUserId, header, function (data) {
+                console.log(data);
+            });
+
             $current.remove();
             $slides.superslides('update');
             $('.slides-pagination').find('a').last().remove();
