@@ -102,7 +102,7 @@ window.addEventListener("load",function() {
             $("#contact-menu .contact-button").text(label);
             $('#controls .delete-slide').toggleClass('disabled', currentIndex == 0 || currentIndex == contactSlideIndex());
             $('#controls .insert.before').toggleClass('disabled', currentIndex == 0);
-            $('#controls .insert.after').toggleClass('disabled', currentIndex == contactSlideIndex());
+            $('#controls .insert.after').toggleClass('disabled', currentIndex == contactSlideIndex() || $slides.superslides('size') >= MAX_SLIDES);
         });
 
 
@@ -266,7 +266,7 @@ window.addEventListener("load",function() {
         }
 
         $('#controls .insert.after').click(function () {
-            if ($slides.superslides('size') == MAX_SLIDES - 1)
+            if ($slides.superslides('size') >= MAX_SLIDES - 1)
                 $('#controls .insert').addClass('disabled');
             if ($slides.superslides('size') >= MAX_SLIDES)
                 return;
