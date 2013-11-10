@@ -27,8 +27,8 @@ function getCards(userid, callback){
     .fail(function() { console.log("getCards Error"); })
 }
 
-function removeCard(header, callback){
-    $.post(ENDPOINT + "postRemoveCard.php", { "header": header })
+function removeCard(userid, header, callback){
+    $.post(ENDPOINT + "postRemoveCard.php", { "header": header, "userid": userid })
     .done(function(data) {
         jsonData = JSON.parse(data);
         callback(jsonData);
@@ -62,10 +62,20 @@ function addUser(user, pass, name, callback){
 function validateUser(user, pass, callback){
     $.post(ENDPOINT + "validateUser.php", { "user": user, "pass": pass })
     .done(function(data) {
+        //returns the user_id as a json response
         jsonData = JSON.parse(data);
         callback(jsonData);
     })
     .fail(function() { console.log("validateUser Error"); })
+}
+
+function updateCardWithHeader(userid, header, card, callback){
+    $.post(ENDPOINT + "updateCard.php", { "userid": userid, "header": header, "card": card })
+    .done(function(data) {
+        jsonData = JSON.parse(data);
+        callback(jsonData);
+    })
+    .fail(function() { console.log("updateCard Error"); })
 }
 
 function getVCF(biojson, callback){
