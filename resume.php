@@ -1,6 +1,7 @@
 <?php
  if(isset($_GET["userid"])) 
-     $userid=$_GET["userid"];
+    $userid=$_GET["userid"];
+    $state=$_GET["state"];
  else $userid=2;
 ?>
 
@@ -32,7 +33,8 @@
         <script src="static/js/vendor/modernizr-2.6.2.min.js"></script>
 
         <script>
-            currentUserId=<?php echo $userid;?>;
+            currentUserId=<?php echo $userid;?>
+            state=<?php echo $state;?>
         </script>
         <div id="templates">
             <script id='intro-slide-template' type='text/template'>
@@ -109,12 +111,29 @@
                     <a href="<%= link %>"><%= bullet %></a>
                 </li>
             </script>
+
+            <script id="edit-controls-template" type="text/template">
+                <div id="controls">
+                    <div class='delete-container'>
+                        <a href="#" class="bubble-button  delete-slide">Delete Slide</a>
+                    </div>
+                    <div class=" insert-slide">
+                        <a href="#" class="bubble-button insert after">Insert Slide</a>
+                        <!-- <a href="#" class="insert before">Insert Before</a> -->
+                    </div>
+                    <!-- <a href="#" class="save-slide">Save Slide</a> -->
+                </div>
+                <a href="#" class="bubble-button edit-slide">Edit</a>
+                <a href="index.html" class="login hide-when-editing">Login</a>
+            </script>
+
+
         </div>
 
 
 
     </head>
-    <body class='loggedIn'>
+    <body class=''>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -123,27 +142,17 @@
             <a href="#" class="contact-button"></a>
         </div>
 
-        <div id="small-logo" class="hide-when-editing">
+<!--         <div id="small-logo" class="hide-when-editing">
             <img src="img/logo.png"></img>
-        </div>
+        </div> -->
 
         <div id="slides">
           <ul class="slides-container">
           </ul>
         </div>
 
-        <div id="controls">
-            <div class='delete-container'>
-                <a href="#" class="bubble-button  delete-slide">Delete Slide</a>
-            </div>
-            <div class=" insert-slide">
-                <a href="#" class="bubble-button insert after">Insert Slide</a>
-                <!-- <a href="#" class="insert before">Insert Before</a> -->
-            </div>
-            <!-- <a href="#" class="save-slide">Save Slide</a> -->
+        <div id='edit-controls-container'>
         </div>
-        <a href="#" class="bubble-button edit-slide">Edit</a>
-        <a href="#" class="bubble-button login hide-when-editing">Login</a>
 
         <script src="static/js/jquery.min.js"></script>
         <script src="static/js/underscore.min.js"></script>
