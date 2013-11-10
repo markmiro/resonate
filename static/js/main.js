@@ -150,8 +150,8 @@ $(function() {
         });
 
         $('.save-slide').click(function () {
+            var $current = getCurrentSlide();
             if ($slides.superslides('current') == 0) {
-                var $current = getCurrentSlide();
                 _.each(_.keys(allData.userbio), function (key) {
                     if ($current.find('.'+key).length > 0) // only replace items that were found in dom
                         allData.userbio[key] = $.trim($current.find('.'+key).text());
@@ -159,6 +159,21 @@ $(function() {
                 postUserBio(currentUserId.toString(), allData.userbio, function (data) {
                     console.log(data);
                 });
+            } else if ($slides.superslides('current') < contactSlideIndex()) {
+                var header = $.trim($current.find('.title').first().text());
+                var card = {header: header, bullets: []};
+                _.each($current.find('li'), function (item) {
+                    // console.log($(item).text());
+                    card.bullets.push({
+                        bullet: $(item).text(),
+                        image: null,
+                        link: null,
+                        date: null
+                    });
+                });
+                postCard(currentUserId, card, function () {
+                });
+                // updateCardWithHeader(currentUserId, header, card, null);
             }
         });
 
@@ -286,7 +301,7 @@ $(function() {
             bulletHTML = tmp('bullet', bullet);
             bulletsHTML += bulletHTML;
         };
-        bulletsHTML += "<div><a href='#' class='add-bullet-button'>Add bullet</div>";
+        bulletsHTML += "<div><a href='#' class='add-bullet-button'>Add bullet</a></div>";
         // var $bullets = _.template(bullets, {bullets: card.bullets});
         return tmp('slide', {header: card.header, bullets: bulletsHTML});
     }
