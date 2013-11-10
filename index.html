@@ -24,6 +24,9 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        <div id='cancel'>
+            X
+        </div>
         <div id="logo">
             <img src="img/logo.png"></img>
             preamble.me
@@ -33,12 +36,72 @@
         </div>
         <div id="login-buttons">
             <div id="login">
-                Login
+                <div class='form'>
+                    <div class='close'>
+                        Cancel
+                    </div>
+                    <div class="label">Username:</div>
+                    <input type="text" autofocus="autofocus" id="username" placeholder="username" autocomplete="off" autocapitalize="off" autocorrect="off"></input>
+
+                    <div class="label">Password:</div>
+                    <input id="password" type="password" placeholder="password"></input>
+                </div>
+                <a href="#" class='submit'>
+                    Login
+                </a>
             </div>
             <div id="signup">
-                Sign up
+                <div class='submit'>
+                    Sign up
+                </div>
             </div>
         </div>
+
+        <script src="static/js/jquery.min.js"></script>
+        <script src="static/js/ajax.js"></script>
+        <script>
+            var time = 0;
+            $(function() {
+                $('#login .submit').click(function () {
+                    if ($('#login .form').is(":visible")) {
+                        // validateUser($('#username').val(), $('#password').val(), function (data) {
+                        //     console.log(data);
+                        // });
+                    } else {
+                        $('#logo').fadeOut(time);
+                        $('#tagline').fadeOut(time);
+                        $('#login .form').slideDown(time);
+                        $('#signup').slideUp(time);
+
+                        $('#username').focus();
+                        $('#username').select();
+                        setTimeout(function () {
+                            $('#login .submit').attr('href', "resume.html");
+                            var $target = $('html,body'); 
+                            $target.animate({scrollTop: 200}, 300);
+                        }, 300);
+                    }
+                    // $('#cancel').fadeIn();
+                });
+                $('#signup .submit').click(function () {
+                    $('#logo').fadeOut(time);
+                    $('#tagline').fadeOut(time);
+                    $('#login').slideUp(time);
+                    // $('#cancel').fadeIn();
+                });
+                $('#cancel, .close').click(function () {
+                    console.log("hello!");
+                    $('#logo').fadeIn();
+                    $('#tagline').fadeIn();
+                    $('#login').slideDown();
+                    $('#login .form').slideUp();
+                    $('#signup').slideDown();
+                    $('#login .submit').attr('href', "#");
+                    // $('#cancel').fadeOut();
+                });
+                // $('#login').click();
+            });
+        </script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--
