@@ -163,7 +163,6 @@ $(function() {
                 var header = $.trim($current.find('.title').first().text());
                 var card = {header: header, bullets: []};
                 _.each($current.find('li'), function (item) {
-                    // console.log($(item).text());
                     card.bullets.push({
                         bullet: $(item).text(),
                         image: null,
@@ -174,6 +173,8 @@ $(function() {
                 postCard(currentUserId, card, function () {
                 });
                 // updateCardWithHeader(currentUserId, header, card, null);
+            } else { // assuming it's a contact card;
+
             }
         });
 
@@ -274,7 +275,15 @@ $(function() {
         });
 
         $('body').on("blur", ".editable", function (e) {
+            var item = $(e.target);
+            item.text($.trim(item.text()));
             console.log('blurred');
+        });
+
+        $('.add-contact').click(function () {
+            getVCF(allData.userbio, function (data) {
+                console.log(data);
+            });
         });
     }
 
