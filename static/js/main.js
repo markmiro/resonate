@@ -1,6 +1,7 @@
 $(function() {
 
     DEFAULT_TEXT = "Type something!";
+    MAX_SLIDES = 8;
     currentUserId = 1;
     allData = null;
     function isEditing() {
@@ -92,7 +93,7 @@ $(function() {
         function getCurrentSlide() {
             var $slidesContainer = $('.slides-container').first();
             var currentIndex = $slides.superslides('current');
-            var domElement = $slidesContainer.find('li').get(currentIndex);
+            var domElement = $slidesContainer.find('> li').get(currentIndex);
             return $(domElement);
         }
 
@@ -117,7 +118,7 @@ $(function() {
             }
             $("#contact-menu .contact-button").text(label);
         });
-        
+
 
         // ----------------------------------------------
         // EDIT CODE
@@ -155,10 +156,12 @@ $(function() {
         }
 
         $('#controls .insert.after').click(function () {
-            if ($slides.superslides('size') == 4)
+            if ($slides.superslides('size') == MAX_SLIDES - 1)
                 $('#controls .insert').addClass('disabled');
-            if ($slides.superslides('size') >= 5)
+            if ($slides.superslides('size') >= MAX_SLIDES)
                 return;
+            var currentIndex = $slides.superslides('current');
+            var $slidesContainer = $('.slides-container').first();
             var $current = getCurrentSlide();
             // var slideHTML = createStandardCard({
             //     header: "New Slide!",
@@ -178,13 +181,11 @@ $(function() {
                         bullet: ""
                     }
                 ]
-            });
+            });;
             $slide = $(slideHTML);
             $slide.insertAfter($current);
             $slides.superslides('update');
             // TODO: make fade in animation for creating new slide
-            var currentIndex = $slides.superslides('current');
-            var $slidesContainer = $('.slides-container').first();
             var $next = $($slidesContainer.find('li').get(currentIndex + 1));
             $next.css('opacity', 0);
             setTimeout(function () {
