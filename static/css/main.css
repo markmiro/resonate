@@ -211,6 +211,10 @@ a {
     right: 0;
 }
 
+#map {
+    opacity: 0.25;
+}
+
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.

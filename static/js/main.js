@@ -137,7 +137,11 @@ $(function() {
         $('body').addClass('editing');
         $editButton.click(function () {
             $('body').toggleClass('editing');
-            $('#controls').toggle(isEditing());
+            if (isEditing())
+                $('#controls').fadeIn();
+            else 
+                $('#controls').fadeOut();
+            // $('#controls').toggle(isEditing());
             if ($('body').hasClass('editing')) {
                 $('head').append('<link rel="stylesheet" href="static/css/edit.css">');
                 $('.add-bullet-button').show();

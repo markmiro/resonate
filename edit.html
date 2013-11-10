@@ -50,17 +50,18 @@
 
             <script id='contact-slide-template' type='text/template'>
                 <li>
+                    <img id="map" src="img/map.png" alt="">
                     <div id="contact-slide" class="container bulleted">
                         <div class="title">Contact</div>
                         <ul>
                             <li>
-                                <a href="mailto:"><%= email %></a>
+                                <a class="email editable" href="mailto:"><%= email %></a>
                             </li>
                             <li>
-                                <a href="tel:1-<%= phone %>"><%= phone %></a>
+                                <a class="phone editable" href="tel:1-<%= phone %>"><%= phone %></a>
                             </li>
                             <li>
-                                <a href="<%= linkedin %>">Linked In</a>
+                                <a class="linkedin editable" href="<%= linkedin %>">Linked In</a>
                             </li>
                             <li>
                                 <a class="add-contact" href="#">Add Contact</a>
