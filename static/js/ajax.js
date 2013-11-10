@@ -28,7 +28,7 @@ function getCards(userid, callback){
 }
 
 function removeCard(header, callback){
-    $.get(ENDPOINT + "postRemoveCard.php", { "header": header })
+    $.post(ENDPOINT + "postRemoveCard.php", { "header": header })
     .done(function(data) {
         jsonData = JSON.parse(data);
         callback(jsonData);
