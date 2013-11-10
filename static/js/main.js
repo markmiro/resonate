@@ -69,6 +69,10 @@ window.addEventListener("load",function() {
     }, $.fn.superslides.fx);
 
     function inited() {
+        var controlsHTML = tmp('edit-controls');
+        $('#edit-controls-container').html(controlsHTML);
+
+
         var $slides = $('#slides');
         var $slidesContainer = $('.slides-container').first();
 

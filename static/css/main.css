@@ -230,12 +230,21 @@ a {
     background-image: url(../../img/pencil.png);
 }
 :not(.loggedIn) a.login {
-    bottom: 0;
-    background-color: #b24c08;
-    position: absolute;
     z-index: 3000;
-    bottom: 0;
+    position: absolute;
     right: 0;
+    top: 0;
+    margin: 18px 36px;
+    color: #b24c08;
+    font-weight: 400;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #b24c08;
+    line-height: 14px;
+    color: #444;
+    border-color: #444;
+}
+.loggedIn .login {
+    display: none;
 }
 
 .editing a.edit-slide {
