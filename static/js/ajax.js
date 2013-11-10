@@ -50,6 +50,17 @@ function postUserBio(userid, biojson, callback){
     .fail(function() { console.log("postUserBio Error"); })
 }
 
+function getVCF(biojson, callback){
+    $.post(ENDPOINT + "postVCF.php", { "biojson": biojson })
+    .done(function(data) {
+
+        //YOU JUST NEED TO HEAD TO THE URL AND IT WILL DOWNLOAD THE VCF FILE!
+
+
+    })
+    .fail(function() { console.log("getVCF Error"); })
+}
+
 //{"userid":"1","header":"Test","bullets":[{"bullet":"CEO of Apples","date":null,"image":null,"link":null},{"bullet":"Leader of a pack","date":null,"image":null,"link":null},{"bullet":"Stud","date":null,"image":null,"link":null}]}
 function postCard(userid, card, callback){
     $.post(ENDPOINT + "postCard.php", { "userid": userid, "card": card })
