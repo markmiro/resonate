@@ -151,10 +151,61 @@ $(function() {
                 $('.add-bullet-button').hide();
                 $("link[href='static/css/edit.css']").remove();
                 $editButton.text('Edit');
+                save();
             }
         });
 
         $('.save-slide').click(function () {
+            // var slideCount = $slides.superslides('size');
+            // var $current = getCurrentSlide();
+            // var currentIndex = $slides.superslides('current');
+            // // for (var i = 0; i < slideCount; i++) {
+            // //     var $current = $($slidesContainer.find('li').get(i));
+            // // };
+            // if (currentIndex== 0) {
+            //     _.each(_.keys(allData.userbio), function (key) {
+            //         if ($current.find('.'+key).length > 0) // only replace items that were found in dom
+            //             allData.userbio[key] = $.trim($current.find('.'+key).text());
+            //     });
+            //     postUserBio(currentUserId.toString(), allData.userbio, function (data) {
+            //         console.log(data);
+            //     });
+            // } else if (currentIndex < contactSlideIndex()) {
+            //     var $title = $current.find('.title').first();
+            //     var header = $.trim($title.text());
+            //     var card = {header: header, bullets: []};
+            //     _.each($current.find('li'), function (item) {
+            //         card.bullets.push({
+            //             bullet: $(item).text(),
+            //             image: null,
+            //             link: null,
+            //             date: null
+            //         });
+            //     });
+
+            //     var exists = !$current.hasClass('newSlide');
+            //     if (exists) {
+            //         updateCardWithHeader(currentUserId, $current.attr('data-old-title'), card, function () {
+            //             $current.attr('data-old-title', card.header);
+            //             allData.cards[currentIndex - 1] = card;
+            //         });
+            //     } else {
+            //         postCard(currentUserId, card, function () {
+            //             $current.removeClass('newSlide');
+            //             $current.attr('data-old-title', card.header);
+            //             allData.cards.splice(currentIndex - 1, 0, card);
+            //         });
+            //     }
+            // } else { // assuming it's a contact card;
+
+            // }
+        });
+        
+        setInterval(function () {
+            save();
+        }, 2000);
+
+        function save() {
             var slideCount = $slides.superslides('size');
             var $current = getCurrentSlide();
             var currentIndex = $slides.superslides('current');
@@ -198,7 +249,7 @@ $(function() {
             } else { // assuming it's a contact card;
 
             }
-        });
+        }
 
         function addSlide(afterIndex) {
 
@@ -246,6 +297,7 @@ $(function() {
             }, 600);
             $next.find('li.editable').first().click();
             $('#slides').superslides('animate', 'next');
+            save();
         });
 
         $('#controls .delete-slide').click(function () {
@@ -262,6 +314,7 @@ $(function() {
             $('.slides-pagination').find('a').last().remove();
             $('.slides-pagination').find('a').get(currentIndex).remove();
             $('#slides').superslides('animate', 'prev');
+            save();
         });
 
         $('body').on("click", ".add-bullet-button", function (e) {
@@ -299,6 +352,7 @@ $(function() {
         $('body').on("focusout", ".editable", function (e) {
             var item = $(e.target);
             placeholderFor(item);
+            save();
         });
 
         $('body').on("blur", ".editable", function (e) {
