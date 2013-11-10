@@ -50,6 +50,15 @@ function postUserBio(userid, biojson, callback){
     .fail(function() { console.log("postUserBio Error"); })
 }
 
+function addUser(user, pass, name, callback){
+    $.post(ENDPOINT + "postUserBio.php", { "user": user, "pass": pass, "name": name })
+    .done(function(data) {
+        jsonData = JSON.parse(data);
+        callback(jsonData);
+    })
+    .fail(function() { console.log("addUser Error"); })
+}
+
 function getVCF(biojson, callback){
     $.post(ENDPOINT + "postVCF.php", { "biojson": biojson })
     .done(function(data) {
