@@ -5,6 +5,16 @@ $(function() {
     MAX_SLIDES = 8;
     currentUserId = 1;
     allData = null;
+
+
+window.addEventListener("load",function() {
+    // Set a timeout...
+    setTimeout(function(){
+        // Hide the address bar!
+        window.scrollTo(0, 1);
+    }, 0);
+});
+
     function isEditing() {
         return $('body').hasClass('editing');
     }
@@ -361,11 +371,11 @@ $(function() {
             console.log('blurred');
         });
 
-        $('.add-contact').click(function () {
-            getVCF(allData.userbio, function (data) {
-                console.log(data);
-            });
-        });
+        // $('.add-contact').click(function () {
+        //     getVCF(currentUserId, function (data) {
+        //         console.log(data);
+        //     });
+        // });
     }
 
 
@@ -379,6 +389,7 @@ $(function() {
     function addContactCard(userbio) {
         var cardHTML = tmp('contact-slide', userbio);
         $('.slides-container').append(cardHTML);
+        $('#contact-slide .add-contact').attr('href', getVCF_HREF(currentUserId));
     }
 
     function createStandardCard(card) {
