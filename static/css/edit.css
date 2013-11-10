@@ -56,6 +56,7 @@
 
 
 [contenteditable] {
+    text-align: left !important;
     background: white !important;
     outline: 1px solid #999;
 }

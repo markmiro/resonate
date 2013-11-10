@@ -1,11 +1,10 @@
 $(function() {
 
     DEFAULT_TEXT = "Type something!";
+    currentUserId = 1;
+    allData = null;
     function isEditing() {
         return $('body').hasClass('editing');
-    }
-    function setEditing(isEditing) {
-
     }
 
     var tmp = function (templateName, vars) {
@@ -99,6 +98,13 @@ $(function() {
             contactSlideIndex = $slides.superslides('size') - 1;
         });
 
+        function getCurrentSlide() {
+            $slidesContainer = $('.slides-container').first();
+            var currentIndex = $slides.superslides('current');
+            var domElement = $slidesContainer.find('li').get(currentIndex);
+            return $(domElement);
+        }
+
         // $slides.superslides({
         //     hashchange: true
         // });
@@ -142,7 +148,14 @@ $(function() {
 
         $('.save-slide').click(function () {
             if ($slides.superslides('current') == 0) {
-                alert('saving bio page');
+                var $current = getCurrentSlide();
+                _.each(_.keys(allData.userbio), function (key) {
+                    if ($current.find('.'+key).length > 0) // only replace items that were found in dom
+                        allData.userbio[key] = $.trim($current.find('.'+key).text());
+                });
+                postUserBio(currentUserId.toString(), allData.userbio, function (data) {
+                    console.log(data);
+                });
             }
         });
 
@@ -155,9 +168,7 @@ $(function() {
                 $('#controls .insert').addClass('disabled');
             if ($slides.superslides('size') >= 5)
                 return;
-            $slidesContainer = $('.slides-container').first();
-            var currentIndex = $slides.superslides('current');
-            var $current = $slidesContainer.find('li').get(currentIndex);
+            var $current = getCurrentSlide();
             // var slideHTML = createStandardCard({
             //     header: "New Slide!",
             //     bullets: [
@@ -228,7 +239,6 @@ $(function() {
         });
 
         $('body').on("blur", ".editable", function (e) {
-
             console.log('blurred');
         });
     }
@@ -269,7 +279,8 @@ $(function() {
         };
     }
     
-    getUserData(1, function (data) {
+    getUserData(currentUserId, function (data) {
+        allData = data;
         console.log(data);
         addIntroCard(data.userbio);
         addStandardCards(data.cards);

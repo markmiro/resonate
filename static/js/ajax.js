@@ -42,9 +42,9 @@ function getCardsStatic(userid, callback){
 }
 
 function postUserBio(userid, biojson, callback){
-    $.post(ENDPOINT + "postUserBio.php", { "userid": userid, "biojson": biojson })
+    $.post(ENDPOINT + "postUserBio.php", { "userid": userid, "biojson": JSON.stringify(biojson) })
     .done(function(data) {
-        jsonData = JSON.parse(data);
+        jsonData = data ? JSON.parse(data) : "";
         callback(jsonData);
     })
     .fail(function() { console.log("postUserBio Error"); })
