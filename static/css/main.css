@@ -51,8 +51,8 @@ a {
 #small-logo {
     position: absolute;
     z-index: 1000;
-    top: 16px;
-    right: 36px;
+    top: 12px;
+    right: 24px;
 }
     #small-logo img {
         /*opacity: 0.5;*/
