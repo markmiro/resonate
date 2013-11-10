@@ -39,9 +39,8 @@
     #controls .delete-slide.disabled,
     #controls .insert.disabled
     {
-        /*color: #999;*/
         opacity: 0.5;
-        display: none;
+        /*display: none;*/
     }
 
     #controls .insert.before, {
