@@ -5,14 +5,14 @@ $(function() {
     MAX_SLIDES = 5;
     allData = null;
 
-
-window.addEventListener("load",function() {
-    // Set a timeout...
-    setTimeout(function(){
-        // Hide the address bar!
-        window.scrollTo(0, 1);
-    }, 0);
-});
+ 
+    window.addEventListener("load",function() {
+        // Set a timeout...
+        setTimeout(function(){
+            // Hide the address bar!
+            window.scrollTo(0, 1);
+        }, 0);
+    });
 
     function isEditing() {
         return $('body').hasClass('editing');
@@ -381,6 +381,11 @@ window.addEventListener("load",function() {
         //         console.log(data);
         //     });
         // });
+        $('body').toggleClass('loggedIn', state > 0);
+        // $('body').toggleClass('editing', state > 1);
+        if (state == 2) {
+            $editButton.click();
+        }
     }
 
 
