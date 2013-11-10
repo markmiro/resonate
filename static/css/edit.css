@@ -53,11 +53,17 @@
 
     #controls .save-slide {
         bottom: 0;
-        right: 0;
+        left: 0;
     }
         #controls .save-slide.disabled {
             opacity: .5;
         }
+
+.add-bullet-button {
+    color: #086cb2;
+    border-color: #086cb2;
+    font-weight: 400;
+}
 
 
 [contenteditable] {

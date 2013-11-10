@@ -139,9 +139,11 @@ $(function() {
             $('body').toggleClass('editing');
             $('#controls').toggle(isEditing());
             if ($('body').hasClass('editing')) {
-                $('head').append('<link rel="stylesheet" href="static/css/edit.css">')
+                $('head').append('<link rel="stylesheet" href="static/css/edit.css">');
+                $('.add-bullet-button').show();
                 $previewButton.text('Done');
             } else {
+                $('.add-bullet-button').hide();
                 $("link[href='static/css/edit.css']").remove();
                 $previewButton.text('Edit');
             }
@@ -219,6 +221,13 @@ $(function() {
             $('#slides').superslides('animate', 'prev');
         });
 
+        $('body').on("click", ".add-bullet-button", function (e) {
+            var item = $(e.target);
+            var $bullet = $(tmp('bullet', {bullet: ""}));
+            $bullet.insertBefore(item);
+            $bullet.click();
+        });
+
         $('body').on("click", ".editable", function (e) {
             if (!isEditing()) return;
             var item = $(e.target);
@@ -277,6 +286,7 @@ $(function() {
             bulletHTML = tmp('bullet', bullet);
             bulletsHTML += bulletHTML;
         };
+        bulletsHTML += "<div><a href='#' class='add-bullet-button'>Add bullet</div>";
         // var $bullets = _.template(bullets, {bullets: card.bullets});
         return tmp('slide', {header: card.header, bullets: bulletsHTML});
     }
