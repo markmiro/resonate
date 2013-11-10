@@ -133,19 +133,19 @@ $(function() {
         // EDIT CODE
         // ----------------------------------------------
 
-        var $previewButton = $(".preview-slide");
+        var $editButton = $(".edit-slide");
         $('body').addClass('editing');
-        $previewButton.click(function () {
+        $editButton.click(function () {
             $('body').toggleClass('editing');
             $('#controls').toggle(isEditing());
             if ($('body').hasClass('editing')) {
                 $('head').append('<link rel="stylesheet" href="static/css/edit.css">');
                 $('.add-bullet-button').show();
-                $previewButton.text('Done');
+                $editButton.text('Done');
             } else {
                 $('.add-bullet-button').hide();
                 $("link[href='static/css/edit.css']").remove();
-                $previewButton.text('Edit');
+                $editButton.text('Edit');
             }
         });
 

@@ -198,13 +198,13 @@ a {
     .slides-pagination > a.current {
     }
 
-.loggedIn a.preview-slide {
+.loggedIn a.edit-slide {
     color: #086cb2;
     border-color: #086cb2;
     font-weight: 400;
     padding: 12px;
 }
-.loggedIn .preview-slide {
+.loggedIn .edit-slide {
     position: absolute;
     z-index: 3000;
     bottom: 0;
