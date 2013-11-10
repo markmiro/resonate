@@ -5,6 +5,51 @@ $(function() {
         return _.template($('#' + templateName + '-template').html(), vars);
     };
 
+    $.fn.superslides.fx = $.extend({
+        slide2: function(orientation, complete) {
+            var that = this;
+            if (orientation.upcoming_slide == that.size() - 1 && orientation.outgoing_slide == 0) {
+                orientation.offset = 0;
+                orientation.upcoming_position = 0;
+            }
+            if (orientation.outgoing_slide == that.size() - 1 && orientation.upcoming_slide == 0) {
+                orientation.offset = -640;
+                orientation.upcoming_position = 640;
+            }
+            var $children = that.$container.children(),
+                $target   = $children.eq(orientation.upcoming_slide);
+
+            $target.css({
+                left: orientation.upcoming_position,
+                display: 'block'
+            });
+
+            that.$control.animate({left: orientation.offset}, that.options.animation_speed, that.options.animation_easing,
+            function() {
+                if (that.size() > 1) {
+                    that.$control.css({
+                        left: -that.width
+                    });
+    
+                    $children.eq(orientation.upcoming_slide).css({
+                        left: that.width,
+                        zIndex: 2
+                    });
+    
+                    if (orientation.outgoing_slide >= 0) {
+                        $children.eq(orientation.outgoing_slide).css({
+                            left: that.width,
+                            display: 'none',
+                            zIndex: 0
+                        });
+                    }
+                }
+  
+                complete();
+            });
+        }
+    }, $.fn.superslides.fx);
+
     function inited() {
         var $slides = $('#slides');
 
@@ -18,7 +63,9 @@ $(function() {
 
 
         var contactSlideIndex;
-        $slides.superslides();
+        $slides.superslides({
+            animation: 'slide2'
+        });
         $slides.bind("init.slides", function () {
             contactSlideIndex = $slides.superslides('size') - 1;
         });
