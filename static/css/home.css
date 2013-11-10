@@ -1,0 +1,35 @@
+#logo {
+    color: #b24c08;
+    z-index: 1000;
+
+    margin-top: 80px;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+#tagline {
+    margin-top: -6px;
+    font-weight: 300;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+
+#login, #signup {
+    font-weight: 400;
+    text-align: center;
+    color: #b24c08;
+    border: 1px solid #b24c08;
+    /*color: #eee;*/
+    /*background: #b24c08;*/
+    padding: 12px;
+    margin: 6px 36px 0;
+}
+
+#login-buttons {
+    width: 100%;
+    position: absolute;
+    bottom: 36px;
+}

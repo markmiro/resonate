@@ -53,6 +53,13 @@ $(function() {
     function inited() {
         var $slides = $('#slides');
 
+        Hammer($('h1')[0], {
+            swipe: false,
+            stop_browser_behavior: {
+                userSelect: false
+            }
+        });
+
         Hammer($slides[0]).on("swipeleft", function(e) {
             $slides.data('superslides').animate('next');
         });
@@ -64,7 +71,8 @@ $(function() {
 
         var contactSlideIndex;
         $slides.superslides({
-            animation: 'slide2'
+            animation: 'slide2',
+            animation_speed: "faster"
         });
         $slides.bind("init.slides", function () {
             contactSlideIndex = $slides.superslides('size') - 1;
@@ -91,7 +99,57 @@ $(function() {
              var content = ($slides.superslides('current') == contactSlideIndex) ? "Home" : "Request Meeting";
              $("#contact-menu .contact-button").text(content);
         });
+
+
+        // ----------------------------------------------
+        // EDIT CODE
+        // ----------------------------------------------
+
+        function addSlide(afterIndex) {
+
+        }
+
+        $('#controls .insert.after').click(function () {
+            if ($slides.superslides('size') == 4)
+                $('#controls .insert').addClass('disabled');
+            if ($slides.superslides('size') >= 5)
+                return;
+            $slidesContainer = $('.slides-container').first();
+            var currentIndex = $slides.superslides('current');
+            var $current = $slidesContainer.find('li').get(currentIndex);
+            var slideHTML = createStandardCard({
+                header: "New Slide!",
+                bullets: [
+                    {
+                        bullet: "Type in a bullet about you"
+                    },
+                    {
+                        bullet: "Or another one!"
+                    }
+                ]
+            });
+            $slide = $(slideHTML);
+            $slide.insertAfter($current);
+            $slides.superslides('update');
+            // TODO: make fade in animation for creating new slide
+            var $next = $($slidesContainer.find('li').get(currentIndex + 1));
+            $next.css('opacity', 0);
+            setTimeout(function () {
+                $next.fadeIn();
+            }, 600);
+            $('#slides').superslides('animate', 'next');
+        });
+
+        $('#controls .delete-slide').click(function () {
+            // var currentIndex = $slides.superslides('current');
+            // var $current = $($slidesContainer.find('li').get(currentIndex));
+            // $current.remove();
+            // $slides.superslides('update');
+        });
     }
+
+
+
 
     function addIntroCard(userbio) {
         var cardHTML = tmp('intro-slide', userbio);
@@ -103,21 +161,25 @@ $(function() {
         $('.slides-container').append(cardHTML);
     }
 
+    function createStandardCard(card) {
+        var bulletsHTML = "";
+        for (var j = 0; j < card.bullets.length; j++) {
+            var bullet = card.bullets[j];
+            var bulletHTML;
+            if (bullet.date != null)
+                bulletHTML = tmp('date-bullet', bullet);
+            bulletHTML = tmp('bullet', bullet);
+            bulletsHTML += bulletHTML;
+        };
+        // var $bullets = _.template(bullets, {bullets: card.bullets});
+        return tmp('slide', {header: card.header, bullets: bulletsHTML});
+    }
+
     function addStandardCards(cards) {
         for (var i = 0; i < cards.length; i++) {
             var card = cards[i];
             // var bullets = "<% _.each(bullets, function(content) { %> <li><%= content %></li> <% }); %>";
-            var bulletsHTML = "";
-            for (var j = 0; j < card.bullets.length; j++) {
-                var bullet = card.bullets[j];
-                var bulletHTML;
-                if (bullet.date != null)
-                    bulletHTML = tmp('date-bullet', bullet);
-                bulletHTML = tmp('bullet', bullet);
-                bulletsHTML += bulletHTML;
-            };
-            // var $bullets = _.template(bullets, {bullets: card.bullets});
-            var cardHTML = tmp('slide', {header: card.header, bullets: bulletsHTML});
+            var cardHTML = createStandardCard(card);
             $('.slides-container').append(cardHTML);
         };
     }
@@ -130,32 +192,6 @@ $(function() {
         inited();
     });
 
-    // getUserBio(1, function (data) {
-    //     $(".intro .name").text(data.name);
-    //     $(".intro .title").text(data.title);
-    //     $(".intro .location").text(data.location);
-    //     $(".intro .objective").text(data.objective);
-    //     $("#email-link").attr("href", "mailto:" + data.email);
-    //     $("#email-link").text(data.email);
-    //     inited();
-    // });
-    // getCardsStatic(1, function (cards) {
-    //     console.log(cards);
-    //     for (var i = 0; i < cards.length; i++) {
-    //         var card = cards[i];
-    //         // var bullets = "<% _.each(bullets, function(content) { %> <li><%= content %></li> <% }); %>";
-    //         var bulletsHTML = "";
-    //         for (var j = 0; j < card.bullets.length; j++) {
-    //             var bullet = card.bullets[j];
-    //             var bulletHTML;
-    //             if (bullet.date != null)
-    //                 bulletHTML = tmp('date-bullet', bullet);
-    //             bulletHTML = tmp('bullet', bullet);
-    //             bulletsHTML += bulletHTML;
-    //         };
-    //         // var $bullets = _.template(bullets, {bullets: card.bullets});
-    //         var cardHTML = tmp('slide', {header: card.header, bullets: bulletsHTML});
-    //         $('.slides-container').append(cardHTML)
-    //     };
-    // });
+
+
 });
