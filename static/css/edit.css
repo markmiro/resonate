@@ -10,22 +10,28 @@
         padding: 12px;
     }
 
-    #controls .delete-slide {
+    #controls .save-slide,
+    #controls .preview-slide,
+    #controls .delete-slide,
+    #controls .insert
+    {
         position: absolute;
+        z-index: 3000;
+    }
+
+    #controls .delete-slide {
         display: block;
         top: 0;
         text-align: center;
-        z-index: 3000;
         width: 100%;
     }
 
     #controls .insert-slide {
+        left: 0;
     }
 
     #controls .insert {
-        position: absolute;
         top: 0;
-        z-index: 3000;
     }
     #controls .insert.disabled {
         /*color: #999;*/
@@ -39,3 +45,27 @@
     #controls .insert.after {
         right: 0;
     }
+
+    #controls .save-slide {
+        bottom: 0;
+        right: 0;
+    }
+        #controls .save-slide.disabled {
+            opacity: .5;
+        }
+
+
+[contenteditable] {
+    background: white !important;
+    outline: 1px solid #999;
+}
+.empty {
+    color: #999;
+}
+.editable {
+    background: #dfdfdf;
+}
+
+.hide-when-editing {
+    display: none;
+}

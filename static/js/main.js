@@ -1,5 +1,7 @@
 $(function() {
 
+    DEFAULT_TEXT = "Type something!";
+
     var tmp = function (templateName, vars) {
         if (vars == undefined) vars = {};
         return _.template($('#' + templateName + '-template').html(), vars);
@@ -53,18 +55,31 @@ $(function() {
     function inited() {
         var $slides = $('#slides');
 
-        Hammer($('h1')[0], {
-            swipe: false,
-            stop_browser_behavior: {
-                userSelect: false
-            }
-        });
+        // Hammer($slides[0], {
+        //     css_hacks:false,
+        //     prevent_default: true,
+        //     scale_treshold: 0,
+        //     drag_min_distance: 0,
+        //     stop_browser_behavior: {
+        //         userselect: false
+        //     }
+        // });
 
-        Hammer($slides[0]).on("swipeleft", function(e) {
+        Hammer($slides[0], {
+            css_hacks:false,
+            stop_browser_behavior: {
+                userselect: false
+            }
+        }).on("swipeleft", function(e) {
             $slides.data('superslides').animate('next');
         });
 
-        Hammer($slides[0]).on("swiperight", function(e) {
+        Hammer($slides[0], {
+            css_hacks:false,
+            stop_browser_behavior: {
+                userselect: false
+            }
+        }).on("swiperight", function(e) {
             $slides.data('superslides').animate('prev');
         });
 
@@ -105,6 +120,19 @@ $(function() {
         // EDIT CODE
         // ----------------------------------------------
 
+        var $previewButton = $("#controls .preview-slide");
+        $('body').addClass('editing');
+        $previewButton.click(function () {
+            $('body').toggleClass('editing');
+            if ($('body').hasClass('editing')) {
+                $('head').append('<link rel="stylesheet" href="static/css/edit.css">')
+                $previewButton.text('Done');
+            } else {
+                $("link[href='static/css/edit.css']").remove();
+                $previewButton.text('Edit');
+            }
+        });
+
         function addSlide(afterIndex) {
 
         }
@@ -117,14 +145,22 @@ $(function() {
             $slidesContainer = $('.slides-container').first();
             var currentIndex = $slides.superslides('current');
             var $current = $slidesContainer.find('li').get(currentIndex);
+            // var slideHTML = createStandardCard({
+            //     header: "New Slide!",
+            //     bullets: [
+            //         {
+            //             bullet: "Type in a bullet about you"
+            //         },
+            //         {
+            //             bullet: "Or another one!"
+            //         }
+            //     ]
+            // });
             var slideHTML = createStandardCard({
-                header: "New Slide!",
+                header: "Something",
                 bullets: [
                     {
-                        bullet: "Type in a bullet about you"
-                    },
-                    {
-                        bullet: "Or another one!"
+                        bullet: ""
                     }
                 ]
             });
@@ -133,10 +169,11 @@ $(function() {
             $slides.superslides('update');
             // TODO: make fade in animation for creating new slide
             var $next = $($slidesContainer.find('li').get(currentIndex + 1));
-            $next.css('opacity', 0);
+            // $next.css('opacity', 0);
             setTimeout(function () {
-                $next.fadeIn();
+                // $next.fadeIn();
             }, 600);
+            $next.find('li.editable').first().click();
             $('#slides').superslides('animate', 'next');
         });
 
@@ -145,6 +182,38 @@ $(function() {
             // var $current = $($slidesContainer.find('li').get(currentIndex));
             // $current.remove();
             // $slides.superslides('update');
+        });
+
+        $('body').on("click", ".editable", function (e) {
+            if (!$('body').hasClass('editing')) return;
+            var item = $(e.target);
+            item.attr('contenteditable', 'true');
+            item.removeClass('empty');
+            if (item.text() == item.attr('data-placeholder') || item.text() == DEFAULT_TEXT)
+                item.text("");
+            item.focus();
+            item.focusout(function () {
+                item.removeAttr('contenteditable');
+                if ($.trim(item.text()) == "" && item.prop("tagName") == "LI") {
+                    item.remove();
+                } else {
+                    // item.text("Type!");
+                }
+            })
+        });
+
+        function placeholderFor(item) {
+            if ($.trim(item.text()) == "" || $.trim(item.text()) == item.attr('data-placeholder') || $.trim(item.text()) == DEFAULT_TEXT) {
+                item.text(item.attr('data-placeholder')? item.attr('data-placeholder') : DEFAULT_TEXT);
+                item.addClass('empty');
+            } else {
+                item.removeClass('empty');
+            }
+        }
+
+        $('body').on("focusout", ".editable", function (e) {
+            var item = $(e.target);
+            placeholderFor(item);
         });
     }
 

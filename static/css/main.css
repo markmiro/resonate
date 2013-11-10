@@ -39,6 +39,7 @@ html {
 
 body {
     /*padding: 0 20px;*/
+    overflow: hidden;
 }
 
 a {
@@ -115,7 +116,7 @@ a {
     }
 
     .intro .name {
-        margin: 120px 0 3px 0;
+        margin: 100px 0 3px 0;
         font-size: 60px;
         line-height: 60px;
         font-weight: 700;
@@ -196,6 +197,19 @@ a {
     }
     .slides-pagination > a.current {
     }
+
+.loggedIn #controls a {
+    color: #086cb2;
+    border-color: #086cb2;
+    font-weight: 400;
+    padding: 12px;
+}
+.loggedIn #controls .preview-slide {
+    position: absolute;
+    z-index: 3000;
+    bottom: 0;
+    left: 0;
+}
 
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
