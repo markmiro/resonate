@@ -4,10 +4,10 @@
     z-index: 3000;
 }
     #controls a {
-        color: #086cb2;
+        /*color: #086cb2;
         border-color: #086cb2;
         font-weight: 400;
-        padding: 12px;
+        paddi*/ng: 12px;
     }
 
     #controls .save-slide,
@@ -18,11 +18,18 @@
         z-index: 3000;
     }
 
-    #controls .delete-slide {
+/*    #controls .delete-slide {
         display: block;
         top: 0;
         text-align: center;
         width: 100%;
+    }*/
+    #controls .delete-slide {
+        top: 0;
+        left: 0;
+        background-image: url(../../img/trash.png);
+        width: 142px;
+        background-size: 12px;
     }
 
     #controls .insert-slide {
@@ -46,7 +53,10 @@
     }
 
     #controls .insert.after {
+        top: 0;
         right: 0;
+        width: 142px;
+        background-image: url(../../img/plus.png);
     }
 
     #controls .save-slide {
@@ -58,9 +68,12 @@
         }
 
 .add-bullet-button {
-    color: #086cb2;
-    border-color: #086cb2;
-    font-weight: 400;
+    margin-top: 12px;
+    background: #086cb2;
+    color: #eee;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-weight: 700;
 }
 
 

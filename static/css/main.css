@@ -209,11 +209,28 @@ a {
     .slides-pagination > a.current {
     }
 
+.bubble-button {
+    min-width: 100px;
+    height: 40px;
+    background: #086cb2;
+    text-align: right;
+    padding: 0 20px;
+    margin: 12px;
+    color: #eee;
+    border-radius: 999px;
+    line-height: 38px;
+    font-weight: 700;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: 15px 50%;
+}
+
 .loggedIn a.edit-slide {
-    color: #086cb2;
-    border-color: #086cb2;
-    font-weight: 400;
-    padding: 12px;
+    bottom: 0;
+    background-image: url(../../img/pencil.png);
+}
+.editing a.edit-slide {
+    background-color: #1cb208;
 }
 .loggedIn .edit-slide {
     position: absolute;

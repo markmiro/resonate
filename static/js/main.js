@@ -2,8 +2,8 @@ $(function() {
 
     DEFAULT_TEXT = "Type something!";
     DEFAULT_SLIDE_HEADERS = ['Skills', 'Experience', 'Education'];
-    MAX_SLIDES = 8;
-    currentUserId = 1;
+    MAX_SLIDES = 5;
+    currentUserId = 2;
     allData = null;
 
 
@@ -148,10 +148,11 @@ window.addEventListener("load",function() {
         $('body').addClass('editing');
         $editButton.click(function () {
             $('body').toggleClass('editing');
-            if (isEditing())
+            if (isEditing()) {
                 $('#controls').fadeIn();
-            else 
+            } else {
                 $('#controls').fadeOut();
+            }
             // $('#controls').toggle(isEditing());
             if ($('body').hasClass('editing')) {
                 $('head').append('<link rel="stylesheet" href="static/css/edit.css">');
