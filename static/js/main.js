@@ -154,8 +154,13 @@ $(function() {
         });
 
         $('.save-slide').click(function () {
+            var slideCount = $slides.superslides('size');
             var $current = getCurrentSlide();
-            if ($slides.superslides('current') == 0) {
+            var currentIndex = $slides.superslides('current');
+            // for (var i = 0; i < slideCount; i++) {
+            //     var $current = $($slidesContainer.find('li').get(i));
+            // };
+            if (currentIndex== 0) {
                 _.each(_.keys(allData.userbio), function (key) {
                     if ($current.find('.'+key).length > 0) // only replace items that were found in dom
                         allData.userbio[key] = $.trim($current.find('.'+key).text());
@@ -163,8 +168,9 @@ $(function() {
                 postUserBio(currentUserId.toString(), allData.userbio, function (data) {
                     console.log(data);
                 });
-            } else if ($slides.superslides('current') < contactSlideIndex()) {
-                var header = $.trim($current.find('.title').first().text());
+            } else if (currentIndex < contactSlideIndex()) {
+                var $title = $current.find('.title').first();
+                var header = $.trim($title.text());
                 var card = {header: header, bullets: []};
                 _.each($current.find('li'), function (item) {
                     card.bullets.push({
@@ -174,9 +180,20 @@ $(function() {
                         date: null
                     });
                 });
-                postCard(currentUserId, card, function () {
-                });
-                // updateCardWithHeader(currentUserId, header, card, null);
+
+                var exists = !$current.hasClass('newSlide');
+                if (exists) {
+                    updateCardWithHeader(currentUserId, $current.attr('data-old-title'), card, function () {
+                        $current.attr('data-old-title', card.header);
+                        allData.cards[currentIndex - 1] = card;
+                    });
+                } else {
+                    postCard(currentUserId, card, function () {
+                        $current.removeClass('newSlide');
+                        $current.attr('data-old-title', card.header);
+                        allData.cards.splice(currentIndex - 1, 0, card);
+                    });
+                }
             } else { // assuming it's a contact card;
 
             }
@@ -213,6 +230,7 @@ $(function() {
                 ]
             });
             $slide = $(slideHTML);
+            $slide.addClass('newSlide');
             $slide.insertAfter($current);
             $slides.superslides('update');
             // TODO: make fade in animation for creating new slide
@@ -231,7 +249,7 @@ $(function() {
             var $current = $($slidesContainer.find('li').get(currentIndex));
             var header = $current.find('.title').text();
             removeCard(currentUserId, header, function (data) {
-                console.log(data);
+                allData.cards.splice(currentIndex - 1, 1);
             });
 
             $current.remove();

@@ -70,7 +70,7 @@ function validateUser(user, pass, callback){
 }
 
 function updateCardWithHeader(userid, header, card, callback){
-    $.post(ENDPOINT + "updateCard.php", { "userid": userid, "header": header, "card": card })
+    $.post(ENDPOINT + "updateCard.php", { "userid": userid, "header": header, "card": JSON.stringify(card) })
     .done(function(data) {
         jsonData = data ? JSON.parse(data) : "";
         callback(jsonData);

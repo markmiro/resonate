@@ -79,3 +79,7 @@
 .hide-when-editing {
     display: none;
 }
+
+.newSlide {
+    /*background: cyan;*/
+}
