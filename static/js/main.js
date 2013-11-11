@@ -11,6 +11,9 @@ $(function() {
     // }
     // $('body').on('touchmove', BlockElasticScroll);
 
+    function trimmer(str) {
+        return str.replace(/[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g, '');
+    }
     document.ontouchstart = function(e){ 
         e.preventDefault(); 
     }
@@ -170,52 +173,6 @@ $(function() {
                 save();
             }
         });
-
-        $('.save-slide').click(function () {
-            // var slideCount = $slides.superslides('size');
-            // var $current = getCurrentSlide();
-            // var currentIndex = $slides.superslides('current');
-            // // for (var i = 0; i < slideCount; i++) {
-            // //     var $current = $($slidesContainer.find('li').get(i));
-            // // };
-            // if (currentIndex== 0) {
-            //     _.each(_.keys(allData.userbio), function (key) {
-            //         if ($current.find('.'+key).length > 0) // only replace items that were found in dom
-            //             allData.userbio[key] = $.trim($current.find('.'+key).text());
-            //     });
-            //     postUserBio(currentUserId.toString(), allData.userbio, function (data) {
-            //         console.log(data);
-            //     });
-            // } else if (currentIndex < contactSlideIndex()) {
-            //     var $title = $current.find('.title').first();
-            //     var header = $.trim($title.text());
-            //     var card = {header: header, bullets: []};
-            //     _.each($current.find('li'), function (item) {
-            //         card.bullets.push({
-            //             bullet: $(item).text(),
-            //             image: null,
-            //             link: null,
-            //             date: null
-            //         });
-            //     });
-
-            //     var exists = !$current.hasClass('newSlide');
-            //     if (exists) {
-            //         updateCardWithHeader(currentUserId, $current.attr('data-old-title'), card, function () {
-            //             $current.attr('data-old-title', card.header);
-            //             allData.cards[currentIndex - 1] = card;
-            //         });
-            //     } else {
-            //         postCard(currentUserId, card, function () {
-            //             $current.removeClass('newSlide');
-            //             $current.attr('data-old-title', card.header);
-            //             allData.cards.splice(currentIndex - 1, 0, card);
-            //         });
-            //     }
-            // } else { // assuming it's a contact card;
-
-            // }
-        });
         
         setInterval(function () {
             save();
@@ -231,7 +188,7 @@ $(function() {
             if (currentIndex== 0) {
                 _.each(_.keys(allData.userbio), function (key) {
                     if ($current.find('.'+key).length > 0) // only replace items that were found in dom
-                        allData.userbio[key] = $.trim($current.find('.'+key).text());
+                        allData.userbio[key] = trimmer($.trim($current.find('.'+key).text()));
                 });
                 console.log('sending for home slide...');
                 console.log(currentUserId.toString());
@@ -245,7 +202,7 @@ $(function() {
                 var card = {header: header, bullets: []};
                 _.each($current.find('li'), function (item) {
                     card.bullets.push({
-                        bullet: $(item).text(),
+                        bullet: trimmer($.trim($(item).text())),
                         image: null,
                         link: null,
                         date: null
@@ -360,14 +317,14 @@ $(function() {
             item.focus();
             item.focusout(function () {
                 item.removeAttr('contenteditable');
-                if ($.trim(item.text()) == "" && item.prop("tagName") == "LI") {
+                if (trimmer($.trim(item.text())) == "" && item.prop("tagName") == "LI") {
                     item.remove();
                 }
             })
         });
 
         function placeholderFor(item) {
-            if ($.trim(item.text()) == "" || $.trim(item.text()) == item.attr('data-placeholder') || $.trim(item.text()) == DEFAULT_TEXT) {
+            if (trimmer($.trim(item.text())) == "" || trimmer($.trim(item.text())) == item.attr('data-placeholder') || trimmer($.trim(item.text())) == DEFAULT_TEXT) {
                 item.text(item.attr('data-placeholder')? item.attr('data-placeholder') : DEFAULT_TEXT);
                 item.addClass('empty');
             } else {
