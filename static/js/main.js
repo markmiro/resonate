@@ -219,7 +219,7 @@ $(function() {
         
         setInterval(function () {
             save();
-        }, 2000);
+        }, 10000);
 
         function save() {
             var slideCount = $slides.superslides('size');
@@ -233,6 +233,9 @@ $(function() {
                     if ($current.find('.'+key).length > 0) // only replace items that were found in dom
                         allData.userbio[key] = $.trim($current.find('.'+key).text());
                 });
+                console.log('sending for home slide...');
+                console.log(currentUserId.toString());
+                console.log(allData.userbio);
                 postUserBio(currentUserId.toString(), allData.userbio, function (data) {
                     console.log(data);
                 });
@@ -251,11 +254,18 @@ $(function() {
 
                 var exists = !$current.hasClass('newSlide');
                 if (exists) {
+                    console.log('sending for new slide...');
+                    console.log(currentUserId);
+                    console.log(currentUserId);
+                    console.log($current.attr('data-old-title'));
                     updateCardWithHeader(currentUserId, $current.attr('data-old-title'), card, function () {
                         $current.attr('data-old-title', card.header);
                         allData.cards[currentIndex - 1] = card;
                     });
                 } else {
+                    console.log('sending for updated slide...');
+                    console.log(currentUserId)
+                    console.log(card);
                     postCard(currentUserId, card, function () {
                         $current.removeClass('newSlide');
                         $current.attr('data-old-title', card.header);
