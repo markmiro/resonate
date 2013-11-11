@@ -15,7 +15,7 @@ $(function() {
         return str.replace(/[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g, '');
     }
     document.ontouchstart = function(e){ 
-        e.preventDefault(); 
+        // e.preventDefault();
     }
 
     function isEditing() {
@@ -173,10 +173,6 @@ $(function() {
                 save();
             }
         });
-        
-        setInterval(function () {
-            save();
-        }, 10000);
 
         function save() {
             var slideCount = $slides.superslides('size');
