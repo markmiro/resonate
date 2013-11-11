@@ -5,14 +5,15 @@ $(function() {
     MAX_SLIDES = 5;
     allData = null;
 
- 
-    window.addEventListener("load",function() {
-        // Set a timeout...
-        setTimeout(function(){
-            // Hide the address bar!
-            window.scrollTo(0, 1);
-        }, 0);
-    });
+    // function BlockElasticScroll(event) {
+    //     event.preventDefault();
+    //     alert('hello');
+    // }
+    // $('body').on('touchmove', BlockElasticScroll);
+
+    document.ontouchstart = function(e){ 
+        e.preventDefault(); 
+    }
 
     function isEditing() {
         return $('body').hasClass('editing');
@@ -310,7 +311,7 @@ $(function() {
             setTimeout(function () {
                 $next.fadeIn();
             }, 600);
-            $next.find('li.editable').first().click();
+            // $next.find('li.editable').first().click();
             $('#slides').superslides('animate', 'next');
             save();
         });
