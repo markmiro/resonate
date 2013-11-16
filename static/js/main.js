@@ -282,7 +282,7 @@ $(function() {
         $('#controls .delete-slide').click(function () {
             if ($('#controls .delete-slide').hasClass('disabled')) return;
             var currentIndex = $slides.superslides('current');
-            var $current = $($slidesContainer.find('li').get(currentIndex));
+            var $current = $($slidesContainer.find('> li').get(currentIndex));
             var header = $current.find('.title').text();
             removeCard(currentUserId, header, function (data) {
                 allData.cards.splice(currentIndex - 1, 1);
