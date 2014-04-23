@@ -8,9 +8,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>preamble.me</title>
         <meta name="description" content="">
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
 
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -59,7 +60,7 @@
                         <div class="title">Contact</div>
                         <ul>
                             <li>
-                                <a class="email editable" href="mailto:"><%= email %></a>
+                                <a class="email editable" href="mailto:<%= email %>"><%= email %></a>
                             </li>
                             <li>
                                 <a class="phone editable" href="tel:1-<%= phone %>"><%= phone %></a>
@@ -150,6 +151,7 @@
         <script src="static/js/plugins.js"></script>
         <script src="static/js/hammer.min.js"></script>
         <script src="static/js/ajax.js"></script>
+        <script src="static/js/mockup.js"></script><!-- remove this line to make it behave like a real app -->
         <script src="static/js/main.js"></script>
     </body>
 </html>
